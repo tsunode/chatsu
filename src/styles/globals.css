@@ -2,26 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    font-size: 60%;
+  }
+
+  @media (min-width: 700px) {
+    :root {
+      font-size: 62.5%;
+    }
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+  }
+
+  body,
+  html {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  body {
+    background: theme(colors.dark-1);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+
+    overflow-x: hidden;
+  }
+
+  body,
+  input,
+  button,
+  textarea {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    font-weight: 500;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme(colors.white-1);
+    margin: 1rem;
+    border-radius: 1.6rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme(colors.dark-2);
+    border-radius: 1.6rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme(colors.green-1);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer components {
+  .triangle {
+    @apply after:absolute after:rounded-md after:border-x-8 after:border-b-8 after:border-solid after:border-b-green-1 after:border-l-transparent after:border-r-transparent after:border-t-green-1 after:content-[''];
+  }
+}
+
+@layer utilities {
+  .content-area {
+    height: calc(100vh - theme(spacing.40));
+  }
 }
